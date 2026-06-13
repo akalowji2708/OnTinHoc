@@ -450,6 +450,12 @@ body {
 .double-underline { text-decoration-line: underline; text-decoration-style: double; text-underline-offset: 3px; }
 .word-underline { text-decoration-line: underline; text-decoration-style: solid; text-underline-offset: 3px; }
 .wavy-pink { text-decoration-line: underline; text-decoration-style: wavy; text-decoration-color: #e78ab4; text-underline-offset: 3px; }
+.inline-figure {
+  max-height: 3.6em;
+  max-width: min(260px, 45vw);
+  vertical-align: middle;
+  margin: 0 0.25em;
+}
 .inline-icon {
   height: 1.35em;
   width: auto;
@@ -6825,11 +6831,12 @@ a:1
   {
     id: 'c4470',
     ch: 'ch4',
-    q: 'Trong Ms Excel, khi nhập dữ liệu nếu ta thấy hình này Chào các bạn ! thì có nghĩa là?',
+    q: 'Trong Ms Excel, khi nhập dữ liệu nếu ta thấy hình này thì có nghĩa là?',
+    qHtml: 'Trong Ms Excel, khi nhập dữ liệu nếu ta thấy hình này <img class="inline-figure" src="./assets/q470-cell-overflow.png" alt="Dữ liệu chuỗi tràn sang ô bên cạnh"> thì có nghĩa là?',
     o: [
       'Dữ liệu chuỗi nằm ở 2 ô và có 2 địa chỉ',
-      'Dữ liệu chỉ nằm ở bên trái, tạm che một phần ô bên phải và có địa chỉ là ô bên trái',
-      'Dữ liệu chỉ nằm ở bên phải và bị cạnh trái nên có địa chỉ là ô bên phải',
+      'Dữ liệu chỉ nằm ô bên trái, tạm che một phần ô bên phải và có địa chỉ là ô bên trái',
+      'Dữ liệu chỉ nằm ô bên phải và bị canh trái nên có địa chỉ là ô bên phải',
       'Tất cả đều sai'
     ],
     a: 1
@@ -7629,9 +7636,10 @@ a:1
   {
     id: 'c4537',
     ch: 'ch4',
-    q: 'Trong Ms Excel, công cụ có hình Format Painter (cây chổi) là chức năng',
+    q: 'Trong Ms Excel, công cụ có hình cây chổi là chức năng',
+    qHtml: 'Trong Ms Excel, công cụ có hình <img class="inline-icon" src="./assets/q537-format-painter.png" alt="Format Painter"> là chức năng',
     o: [
-      'Đơn dẹp dữ liệu dư thừa',
+      'Dọn dẹp dữ liệu dư thừa',
       'Copy định dạng',
       'Xóa dữ liệu',
       'Copy đường viền, khung'
@@ -7762,6 +7770,7 @@ a:1
     id: 'c4548',
     ch: 'ch4',
     q: 'Trong Ms Excel, khi thấy các đường vạch đứt trong trang tính đó là?',
+    qHtml: 'Trong Ms Excel, khi thấy các đường vạch đứt trong trang tính <img class="inline-figure" src="./assets/q548-page-break.png" alt="Đường vạch đứt trong trang tính Excel"> đó là?',
     o: [
       'Vùng giới hạn tính toán',
       'Vùng soạn thảo bảng tính',
@@ -8124,8 +8133,8 @@ a:1
     q: 'Để chuyển đổi qua lại giữa các cửa sổ làm việc của PowerPoint ta thao tác:',
     o: [
       'View → Switch Windows.',
-      'View→ New Window',
-      'View→ Move split',
+      'View → New Window',
+      'View → Move split',
       'Tất cả đều sai.'
     ],
     a: 0
