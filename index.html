@@ -430,7 +430,29 @@ body {
   font-weight: 500;
   color: var(--text);
 }
-
+.q-media { margin: 0.15rem 0 1.2rem; text-align: center; }
+.q-quote {
+  color: var(--red);
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.8;
+  margin: 0.1rem 0 1.1rem;
+}
+.q-image {
+  max-width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+.inline-icon {
+  height: 1.35em;
+  width: auto;
+  vertical-align: -0.28em;
+  margin: 0 0.25em;
+}
 /* ═══ OPTIONS ═══ */
 .option {
   display: flex;
@@ -1140,7 +1162,38 @@ const CHAPTERS = {
 };
 
 const ALL_QUESTIONS = [
-{id:'c1002',ch:'ch1',q:'Hình ảnh dưới đây là thành phần gì trong máy tính?',img:'assets/q020-mainboard.png',imgAlt:'Hình bo mạch chủ máy tính',o:['Bo mạch chính','Bộ xử lý trung tâm','Đĩa cứng trong máy','Thiết bị nối mạng'],a:0,e:'Hình minh họa là bo mạch chính (mainboard/motherboard), nơi gắn CPU, RAM, khe mở rộng và các cổng kết nối.'},{id:'c1001',ch:'ch1',q:'Đảng Cộng sản Việt Nam do ai sáng lập?',o:['Trần Phú','Chủ tịch Hồ Chí Minh','Lê Hồng Phong','Lê Duẩn'],a:1,e:'Đảng Cộng sản Việt Nam do Chủ tịch Hồ Chí Minh (lúc đó mang tên Nguyễn Ái Quốc) sáng lập ngày 3/2/1930 tại Hội nghị hợp nhất các tổ chức cộng sản ở Hương Cảng (Trung Quốc). Trần Phú là Tổng Bí thư đầu tiên, còn Lê Hồng Phong và Lê Duẩn là các lãnh đạo Đảng ở giai đoạn sau. (Giáo trình tr.11)'},
+{id:'c2112',ch:'ch2',q:'Phát biểu nào đúng khi tư thế làm việc với máy tính được đề nghị như hình?',img:'./assets/q112-posture.png',imgAlt:'Tư thế làm việc đúng với máy tính',o:['Góc nhìn 15° – 20° với tầm nhìn 350-600 mm đối với các văn bản có cỡ phông chữ thường.','Tựa lưng, chiều cao ghế, chiều cao bàn điều chỉnh được, nơi để chân chắc chắn, thoải mái, có chỗ để cổ tay nếu cần thiết, ghế có mép tròn uốn cong','Điều chỉnh độ sáng trong môi trường đang làm việc bằng rèm cửa, chao đèn … giảm thiểu hiện tượng mỏi mắt.','Cả A,B,C đều đúng'],a:3},
+{id:'c2233',ch:'ch2',q:'Để tắt máy tính đúng cách ta chọn',qHtml:'Để tắt máy tính đúng cách ta chọn <img class="inline-icon" src="./assets/q233-power.png" alt="Power">',o:['Nhấn nút Start ở góc dưới bên trái màn hình nền, chọn mục (Power), chọn Shutdown','Tắt nguồn điện','Bấm nút Power trên hộp máy','Bấm nút Reset trên hộp máy'],a:0},
+{id:'c2277',ch:'ch2',q:'Biểu tượng này là của:',qHtml:'Biểu tượng này là của: <img class="inline-icon" src="./assets/q277-recycle-bin.png" alt="Recycle Bin">',o:['My Computer','Recycle Bin','Internet Explorer','My Network Places'],a:1},
+{id:'c2278',ch:'ch2',q:'Biểu tượng này là của:',qHtml:'Biểu tượng này là của: <img class="inline-icon" src="./assets/q278-ie.png" alt="Internet Explorer">',o:['My Computer','Recycle Bin','Internet Explorer','My Network Places'],a:2},
+{id:'c2279',ch:'ch2',q:'Chức năng của biểu tượng × này là gì',qHtml:'Chức năng của biểu tượng <span style="display:inline-flex;align-items:center;justify-content:center;width:1.05em;height:1.05em;border:1.5px solid currentColor;color:var(--red);font-weight:700;line-height:1">×</span> này là gì',o:['Đóng cửa sổ','Tối đa kích thước cửa sổ','Tối thiểu kích thước cửa sổ','Khôi phục kích thước cửa sổ'],a:0},
+{id:'c2280',ch:'ch2',q:'Chức năng của biểu tượng _ này là gì',qHtml:'Chức năng của biểu tượng <span style="display:inline-flex;align-items:flex-end;justify-content:center;width:1.05em;height:1.05em;border:1.5px solid #888;color:#222;font-weight:700;line-height:0.6">_</span> này là gì',o:['Đóng cửa sổ','Tối đa kích thước cửa sổ','Tối thiểu kích thước cửa sổ','Khôi phục kích thước cửa sổ'],a:2},
+{id:'c2281',ch:'ch2',q:'Chức năng của biểu tượng khôi phục này là gì',qHtml:'Chức năng của biểu tượng <span style="position:relative;display:inline-block;width:1.15em;height:1em;vertical-align:-0.15em"><span style="position:absolute;left:.28em;top:0;width:.72em;height:.52em;border:2px solid var(--red);background:white"></span><span style="position:absolute;left:0;top:.25em;width:.72em;height:.52em;border:2px solid var(--red);background:white"></span></span> này là gì',o:['Đóng cửa sổ','Tối đa kích thước cửa sổ','Tối thiểu kích thước cửa sổ','Khôi phục kích thước cửa sổ'],a:3},
+{id:'c2284',ch:'ch2',q:'Trong Windows Explorer, chức năng của biểu tượng này là gì?',qHtml:'Trong Windows Explorer, chức năng của biểu tượng này <img class="inline-icon" src="./assets/q284-folder-up.png" alt="Thư mục cấp trên"> là gì?',o:['Hiển thị màn hình nền','Hiển thị nội dung của ổ đĩa mềm','Hiển thị thư mục cấp trên','Hiển thị thư mục cấp dưới'],a:2},
+{id:'c2285',ch:'ch2',q:'Trong Windows Explorer, chức năng của biểu tượng này × là gì?',qHtml:'Trong Windows Explorer, chức năng của biểu tượng này <span style="font-size:1.25em;line-height:1">×</span> là gì?',o:['Dừng việc chạy một mục','Xóa mục đang chọn','Sao chép một mục vào ClipBoard','Cắt một mục vào ClipBoard'],a:3},
+{id:'c2297',ch:'ch2',q:'Trong Windows Explorer, chức năng của biểu tượng này là gì?',qHtml:'Trong Windows Explorer, chức năng của biểu tượng <img class="inline-icon" src="./assets/q297-view-options.png" alt="Tùy chọn hiển thị"> này là gì?',o:['Xóa mục đang chọn','Cho phép bạn chọn tùy chọn hiển thị','Sao chép một mục vào ClipBoard','Cắt một mục vào ClipBoard'],a:1},
+{id:'c3312',ch:'ch3',q:'Trong Microsoft Word, để gạch chân hai nét ta sử dụng tổ hợp phím:',qHtml:'Trong Microsoft Word, để <u>gạch chân hai nét</u> ta sử dụng tổ hợp phím:',o:['Ctrl + U','Ctrl + B','Ctrl + D','Ctrl + Shift + D'],a:3},
+{id:'c3325',ch:'ch3',q:'Trong Microsoft Word, để chuyển đoạn văn bản đã được chọn từ chữ thường thành chữ có gạch chân ta sử dụng tổ hợp phím nào?',qHtml:'Trong Microsoft Word, để chuyển đoạn văn bản đã được chọn từ chữ thường thành chữ có <u>gạch chân</u> ta sử dụng tổ hợp phím nào?',o:['Ctrl + Shift + D','Ctrl + U','Ctrl + Alt + W','Cả A, B, C đều sai'],a:1},
+{id:'c3329',ch:'ch3',q:'Trong Microsoft Word, để định dạng chữ nghiêng ta sử dụng tổ hợp phím:',qHtml:'Trong Microsoft Word, để định dạng <i>chữ nghiêng</i> ta sử dụng tổ hợp phím:',o:['Ctrl + I','Ctrl + U','Ctrl + B','Ctrl + D'],a:0},
+{id:'c3336',ch:'ch3',q:'Trong Microsoft Word, để gạch dưới mỗi từ một nét đơn, ta sử dụng tổ hợp phím nào?',qHtml:'Trong Microsoft Word, để <u>gạch dưới mỗi từ một nét đơn</u>, ta sử dụng tổ hợp phím nào?',o:['Ctrl + Shift + B','Ctrl + Shift + A','Ctrl + Shift + K','Ctrl + Shift + W'],a:3},
+{id:'c3344',ch:'ch3',q:'Trong Microsoft Word, lệnh Table Tools/ Layout/ Merge cells dùng để nối nhiều ô theo:',o:['Hàng ngang','Hàng dọc','Các ô liên tục nhau','Đường chéo'],a:2},
+{id:'c3348',ch:'ch3',q:'Trong Microsoft Word, để gạch ngang một đoạn văn bản đã chọn (ví dụ như: tạm bỏ), ta chọn thao tác trên menu nào?',qHtml:'Trong Microsoft Word, để gạch ngang một đoạn văn bản đã chọn (ví dụ như: <s>tạm bỏ</s>), ta chọn thao tác trên menu nào?',o:['Format Paragraph/ abc','Home/ Font/ abc','Double Strikethrough','Tất cả đều sai'],oHtml:['Format Paragraph/ <s>abc</s>','Home/ Font/ <s>abc</s>','Double Strikethrough','Tất cả đều sai'],a:1},
+{id:'c3355',ch:'ch3',q:'Trong Microsoft Word, muốn đánh chỉ số trên (ví dụ m²) ta chọn thao tác trên menu nào?',qHtml:'Trong Microsoft Word, muốn đánh chỉ số trên (ví dụ m<sup>2</sup>) ta chọn thao tác trên menu nào?',o:['Home/ Font/ rồi chọn X²','Format/Font/ rồi chọn X²','Format/Font rồi chọn Strikethough','Cả A, B, C đều sai.'],oHtml:['Home/ Font/ rồi chọn X<sup>2</sup>','Format/Font/ rồi chọn X<sup>2</sup>','Format/Font rồi chọn Strikethough','Cả A, B, C đều sai.'],a:0},
+{id:'c3377',ch:'ch3',q:'Trong Microsoft Word, khi nhấp chuột vào biểu tượng máy in để:',qHtml:'Trong Microsoft Word, khi nhấp chuột vào biểu tượng 🖨️ để:',o:['In văn bản','Scan hình ảnh.','Copy đoạn văn bản','Cả A,B,C đều đúng'],a:3},
+{id:'c3382',ch:'ch3',q:'Trong Microsoft Word, biểu tượng giống cây chổi có chức năng gì?',qHtml:'Trong Microsoft Word, biểu tượng giống cây chổi <img class="inline-icon" src="./assets/q537-format-painter.png" alt="Format Painter"> có chức năng gì?',o:['Sao chép nội dung văn bản','Canh lề văn bản','Sao chép định dạng','Mở văn bản đã có'],a:2},
+{id:'c3383',ch:'ch3',q:'Trong Microsoft Word, để tạo đường viền trang ta dùng:',o:['Format/ Border and Shading/ Page Border','Home/ chọn Border / Border and Shading/ Page Border','Home/ chọn Shading / Border and Shading/ Page Border','Cả 3 câu trên đều sai'],a:1},
+{id:'c3387',ch:'ch3',q:'Trong Microsoft Word, khi gõ các từ tiếng Việt sẽ được gạch chân răng cưa màu hồng là do:',o:['Viết sai chính tả tiếng Việt','Đã thiết lập kiểm tra lỗi chính tả và ngữ pháp','Máy tính bị nhiễm virus','Tất cả A, B, C đều đúng'],a:1},
+{id:'c4409',ch:'ch4',q:'Biểu tượng (icon) có tác dụng gì?',qHtml:'Biểu tượng (icon) <img class="inline-icon" src="./assets/q409-excel.png" alt="Microsoft Excel"> có tác dụng gì?',o:['Khởi động Microsoft Word','Khởi động Microsoft Excel','Khởi động Microsoft PowerPoint','Khởi động Microsoft Access'],a:1},
+{id:'c4470',ch:'ch4',q:'Trong Ms Excel, khi nhập dữ liệu nếu ta thấy hình này thì có nghĩa là?',img:'./assets/q470-cell-overflow.png',imgAlt:'Dữ liệu chuỗi trong Excel tràn sang ô bên cạnh',o:['Dữ liệu chuỗi nằm ở 2 ô và có 2 địa chỉ','Dữ liệu chỉ nằm ô bên trái, tạm che một phần ô bên phải và có địa chỉ là ô bên trái','Dữ liệu chỉ nằm ô bên phải và bị canh trái nên có địa chỉ là ô bên phải','Tất cả đều sai'],a:1},
+{id:'c4475',ch:'ch4',q:'Để “ép” Ms Excel hiểu bất kỳ loại dữ liệu nào cũng là kiểu chuỗi, khi nhập ta nhập ký hiệu … này trước dữ liệu cần nhập?',o:['#','!','‘','“'],a:2},
+{id:'c4481',ch:'ch4',q:'Khái niệm định dạng (format) trong Ms Excel được hiểu là?',o:['Là các thao tác như : in đậm, tô màu canh vị trí …','Là chuyển giá trị Sun 12/24/2017 thành 24/12/2017','Là đưa các đơn vị tính vào giá trị : 5000 vnđ, $100, 1000Ω','Là tất cả các thao tác trình bày không làm thay đổi giá trị'],a:3},
+{id:'c4537',ch:'ch4',q:'Trong Ms Excel, công cụ có hình cây chổi là chức năng',qHtml:'Trong Ms Excel, công cụ có hình <img class="inline-icon" src="./assets/q537-format-painter.png" alt="Format Painter"> là chức năng',o:['Dọn dẹp dữ liệu dư thừa','Copy định dạng','Xóa dữ liệu','Copy đường viền, khung'],a:1},
+{id:'c4548',ch:'ch4',q:'Trong Ms Excel, khi thấy các đường vạch đứt trong trang tính đó là?',img:'./assets/q548-page-break.png',imgAlt:'Đường vạch đứt trong trang tính Excel',o:['Vùng giới hạn tính toán','Vùng soạn thảo bảng tính','Vùng in (tạm thời) theo khổ giấy và lề đã chọn','Vùng ngoài trang in'],a:2},
+{id:'c5578',ch:'ch5',q:'Để chuyển đổi qua lại giữa các cửa sổ làm việc của PowerPoint ta thao tác:',o:['View → Switch Windows.','View→ New Window','View→ Move split','Tất cả đều sai.'],a:0},
+{id:'c1020',ch:'ch1',q:'Hình ảnh dưới đây là thành phần gì trong máy tính?',img:'./assets/q020-mainboard.png',imgAlt:'Hình bo mạch chủ máy tính',o:['Bo mạch chính','Bộ xử lý trung tâm','Đĩa cứng trong máy','Thiết bị nối mạng'],a:0,e:'Hình minh họa là bo mạch chính (mainboard/motherboard), nơi gắn CPU, RAM, khe mở rộng và các cổng kết nối.'},
+
+{id:'c3001',ch:'ch3',q:'Phần mềm nào có thể soạn thảo văn bản với nội dung và định dạng như sau?',quote:['Hôm nay mùng tám tháng ba','Tôi giặt dùm bà chiếc áo …của tôi.'],o:['Microsoft Word','Notepad','WordPad','Cả A,B,C đều đúng'],a:3,e:'Cả Microsoft Word, Notepad và WordPad đều có thể nhập nội dung văn bản đơn giản như ví dụ.'},
+
 ];
 
 
@@ -1331,6 +1384,51 @@ function escapeHtml(text) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+function setRichText(el, html, text) {
+  if (html) el.innerHTML = html;
+  else el.textContent = text || '';
+}
+
+function getOptionText(q, idx) {
+  return q.oHtml && q.oHtml[idx] ? q.oHtml[idx] : q.o[idx];
+}
+
+function setOptionText(el, q, idx) {
+  if (q.oHtml && q.oHtml[idx]) el.innerHTML = q.oHtml[idx];
+  else el.textContent = q.o[idx];
+}
+
+function shouldKeepOptionOrder(q) {
+  const combinedOptions = q.o.map((opt, idx) => {
+    const htmlOpt = q.oHtml && q.oHtml[idx] ? q.oHtml[idx] : '';
+    return (opt + ' ' + htmlOpt)
+      .replace(/<[^>]*>/g, ' ')
+      .normalize('NFC');
+  }).join(' | ');
+  return /(?:Cả\s+(?:A|B|C|D|3)|Câu\s+(?:A|B|C|D)|(?:^|[^A-Z])A\s*,\s*B|(?:^|[^A-Z])A\s+và\s+B|(?:^|[^A-Z])A\s*,\s*B\s+và\s+C|Tất cả đều)/i.test(combinedOptions);
+}
+
+function appendQuestionExtras(container, q) {
+  if (q.quote) {
+    const quote = document.createElement('div');
+    quote.className = 'q-quote';
+    const lines = Array.isArray(q.quote) ? q.quote : [q.quote];
+    lines.forEach(line => {
+      const div = document.createElement('div');
+      div.textContent = line;
+      quote.appendChild(div);
+    });
+    container.appendChild(quote);
+  }
+  if (q.img) {
+    const img = document.createElement('img');
+    img.className = 'q-image';
+    img.src = q.img;
+    img.alt = q.imgAlt || 'Hình minh họa câu hỏi';
+    container.appendChild(img);
+  }
 }
 let _pendingChapter = null;
 let _pendingSection = null;
@@ -1704,9 +1802,9 @@ function startExam(pool, title) {
   examState.flagged = new Set();
   examState.page = 0;
   examState.shuffledOpts = pool.map(q => {
-    const hasAllOption = q.o.some(opt => /^Cả [A-D]/.test(opt));
+    const keepOptionOrder = shouldKeepOptionOrder(q);
     const indices = [0,1,2,3];
-    if (!hasAllOption) {
+    if (!keepOptionOrder) {
       for (let i = indices.length-1; i > 0; i--) {
         const j = Math.floor(Math.random()*(i+1));
         [indices[i],indices[j]] = [indices[j],indices[i]];
@@ -1765,18 +1863,12 @@ function renderExamPage() {
 
     const qText = document.createElement('div');
     qText.className = 'q-text';
-    qText.textContent = (i+1) + '. ' + q.q;
+    setRichText(qText, q.qHtml ? (i+1) + '. ' + q.qHtml : null, (i+1) + '. ' + q.q);
     card.appendChild(qText);
-    if (q.img) {
-      const media = document.createElement('div');
-      media.className = 'q-media';
-      const img = document.createElement('img');
-      img.className = 'q-image';
-      img.src = q.img;
-      img.alt = q.imgAlt || 'Hình minh họa câu hỏi';
-      media.appendChild(img);
-      card.appendChild(media);
-    }
+    const media = document.createElement('div');
+    media.className = 'q-media';
+    appendQuestionExtras(media, q);
+    if (media.children.length) card.appendChild(media);
 
     const optsDiv = document.createElement('div');
     indices.forEach((origIdx, displayPos) => {
@@ -1787,7 +1879,7 @@ function renderExamPage() {
       letterSpan.className = 'option-letter';
       letterSpan.textContent = letters[displayPos];
       const textSpan = document.createElement('span');
-      textSpan.textContent = q.o[origIdx];
+      setOptionText(textSpan, q, origIdx);
       btn.appendChild(letterSpan);
       btn.appendChild(textSpan);
       btn.onclick = () => examSelectAnswer(i, displayPos, btn, optsDiv);
@@ -2026,25 +2118,19 @@ function renderQuestion() {
   const explainEl = document.getElementById('explain');
   explainEl.style.display = 'none';
   document.getElementById('q-chapter').textContent = CHAPTERS[q.ch] || q.ch;
-  document.getElementById('q-text').textContent = (state.cur+1)+'. '+q.q;
+  setRichText(document.getElementById('q-text'), q.qHtml ? (state.cur+1)+'. '+q.qHtml : null, (state.cur+1)+'. '+q.q);
   const mediaEl = document.getElementById('q-media');
   mediaEl.innerHTML = '';
-  if (q.img) {
-    const img = document.createElement('img');
-    img.className = 'q-image';
-    img.src = q.img;
-    img.alt = q.imgAlt || 'Hình minh họa câu hỏi';
-    mediaEl.appendChild(img);
-  }
+  appendQuestionExtras(mediaEl, q);
   document.getElementById('quiz-prog').textContent = `Câu ${state.cur+1} / ${state.session.length}`;
   document.getElementById('prog-fill').style.width = (state.cur/state.session.length*100)+'%';
   const opts = document.getElementById('options');
   opts.innerHTML = '';
   const letters = ['A','B','C','D'];
 
-  const hasAllOption = q.o.some(opt => /^Cả [A-D]/.test(opt));
-  const indices = [0,1,2,3];
-  if (!hasAllOption) {
+  const keepOptionOrder = shouldKeepOptionOrder(q);
+    const indices = [0,1,2,3];
+    if (!keepOptionOrder) {
     for (let i = indices.length-1; i > 0; i--) {
       const j = Math.floor(Math.random()*(i+1));
       [indices[i],indices[j]] = [indices[j],indices[i]];
@@ -2061,7 +2147,7 @@ function renderQuestion() {
     letterSpan.className = 'option-letter';
     letterSpan.textContent = letters[displayPos];
     const textSpan = document.createElement('span');
-    textSpan.textContent = q.o[origIdx];
+    setOptionText(textSpan, q, origIdx);
     btn.appendChild(letterSpan);
     btn.appendChild(textSpan);
     btn.addEventListener('click', (e) => {
