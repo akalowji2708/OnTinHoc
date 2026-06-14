@@ -720,10 +720,49 @@ body {
 .btn-cancel-submit { background: var(--cream-dark); color: var(--text-sub); border: 1px solid var(--border) !important; }
 .btn-cancel-submit:hover { background: var(--border); }
 
+.draggable-fab { display: none; }
+.panel-backdrop { display: none; }
+.panel-header-mobile { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.panel-close-btn { display: none; }
+
 @media (max-width: 600px) {
   .exam-layout { flex-direction: column; }
-  .exam-panel { width: 100%; position: static; order: -1; }
-  .panel-grid { grid-template-columns: repeat(10, 1fr); }
+  
+  .draggable-fab {
+    display: flex; position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+    width: 25px; height: 50px; background: rgba(255, 255, 255, 0.2);; color: var(--red-dark);
+    border-radius: 0 999px 999px 0; border: 1px solid rgba(0,0,0,0.08); border-left: none;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.15); align-items: center; justify-content: center;
+    z-index: 99; cursor: grab; font-size: 1.2rem;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .draggable-fab:active { cursor: grabbing; }
+  .draggable-fab.snapped-right {
+    border-radius: 999px 0 0 999px; border: 1px solid rgba(0,0,0,0.08); border-right: none;
+    box-shadow: -2px 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  .panel-backdrop {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); z-index: 999;
+  }
+  .panel-backdrop.open { display: block; }
+
+  .exam-panel {
+    position: fixed; top: 0; left: -100%; width: 280px; height: 100vh;
+    z-index: 1000; transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0; border-radius: 0; border: none; padding: 1.5rem 1.1rem;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.15); max-height: 100vh;
+  }
+  .exam-panel.open { left: 0; }
+  
+  .panel-close-btn {
+    display: flex; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-sub);
+    align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%;
+  }
+  .panel-close-btn:hover { background: var(--surface2); color: var(--red); }
+  
+  .panel-grid { grid-template-columns: repeat(6, 1fr); gap: 0.4rem; }
 }
 
 /* ═══ RESULT ═══ */
@@ -1042,6 +1081,7 @@ body {
 
 <!-- EXAM MODE -->
 <div id="exam" style="display:none">
+  <button id="draggable-fab" class="draggable-fab"></button>
   <div class="quiz-meta">
     <span id="exam-title">Thi</span>
     <div style="display:flex;align-items:center;gap:0.7rem;">
@@ -1054,8 +1094,12 @@ body {
   </div>
   <div class="progress-bar"><div class="progress-fill" id="exam-prog-fill"></div></div>
   <div class="exam-layout">
-    <div class="exam-panel">
-      <h4>Bảng câu hỏi</h4>
+    <div class="panel-backdrop" id="panel-backdrop" onclick="toggleExamPanel(false)"></div>
+    <div class="exam-panel" id="exam-panel">
+      <div class="panel-header-mobile">
+        <h4 style="margin:0">Bảng câu hỏi</h4>
+        <button class="panel-close-btn" onclick="toggleExamPanel(false)">✕</button>
+      </div>
       <div class="panel-grid" id="panel-grid"></div>
       <div class="panel-legend">
         <div><span class="dot" style="background:var(--red);border-radius:4px"></span> Câu hiện tại</div>
@@ -1119,11 +1163,11 @@ body {
       <div class="modal-choices">
         <div class="modal-choice" onclick="openStudyView()">
           <div class="mc-title">Ôn</div>
-          <div class="mc-sub">Chọn toàn chương, nhóm câu hoặc mục cụ thể để ôn luyện</div>
+
         </div>
         <div class="modal-choice" onclick="startFromModal('exam')">
           <div class="mc-title">Thi theo chương</div>
-          <div class="mc-sub">50 câu ngẫu nhiên</div>
+
         </div>
       </div>
       <div class="modal-cancel"><button onclick="closeChapterModal()">Huỷ</button></div>
@@ -10414,7 +10458,7 @@ function openStudyView() {
   allBtn.className = 'section-item';
   allBtn.style.borderColor = 'var(--red)';
   allBtn.style.background = 'var(--surface2)';
-  allBtn.innerHTML = `<div class="si-left"><div class="si-label" style="color:var(--red)">Toàn bộ phần (${chapterCount} câu)</div></div>`;
+  allBtn.innerHTML = `<div class="si-left"><div class="si-label" style="color:var(--red)">Toàn bộ (${chapterCount} câu)</div></div>`;
   allBtn.onclick = () => {
     document.getElementById('chapter-modal').classList.remove('active');
     startQuizByFilter(q => q.ch === ch, 'Ôn – ' + map.name);
@@ -10905,7 +10949,21 @@ function renderExamPanel() {
   document.getElementById('panel-summary').textContent = `${answered} / ${total} đã trả lời`;
 }
 
+function toggleExamPanel(force) {
+  const panel = document.getElementById('exam-panel');
+  const backdrop = document.getElementById('panel-backdrop');
+  if(!panel || !backdrop) return;
+  if(force === false) {
+    panel.classList.remove('open');
+    backdrop.classList.remove('open');
+  } else {
+    panel.classList.toggle('open');
+    backdrop.classList.toggle('open');
+  }
+}
+
 function jumpToQuestion(idx) {
+  toggleExamPanel(false);
   highlightPanelBtn(idx);
   const targetPage = Math.floor(idx / PAGE_SIZE);
   if (targetPage !== examState.page) {
@@ -11222,6 +11280,105 @@ function goHome() {
 }
 
 updateHome();
+
+/* ═══ DRAGGABLE FLOATING ACTION BUTTON (FAB) FOR MOBILE ═══ */
+(function initDraggableFAB() {
+  const fab = document.getElementById('draggable-fab');
+  let fabDragging = false;
+  let fabMoved = false;
+  let fabStartX = 0; let fabStartY = 0;
+  let fabInitLeft = 0; let fabInitTop = 0;
+
+  if (fab) {
+    // Touch start
+    fab.addEventListener('touchstart', (e) => {
+      fabDragging = true;
+      fabMoved = false;
+      fabStartX = e.touches[0].clientX;
+      fabStartY = e.touches[0].clientY;
+      const rect = fab.getBoundingClientRect();
+      fabInitLeft = rect.left;
+      fabInitTop = rect.top;
+      fab.style.transition = 'none';
+    }, { passive: true });
+
+    // Touch move
+    document.addEventListener('touchmove', (e) => {
+      if (!fabDragging) return;
+      
+      const deltaX = e.touches[0].clientX - fabStartX;
+      const deltaY = e.touches[0].clientY - fabStartY;
+      
+      // Set moved to true if dragged more than 5px to distinguish from click
+      if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+        fabMoved = true;
+      }
+      
+      if (fabMoved) {
+        if (e.cancelable) e.preventDefault(); // Stop scrolling background
+        let newX = fabInitLeft + deltaX;
+        let newY = fabInitTop + deltaY;
+        
+        // Boundaries checking (Y-axis)
+        if (newY < 20) newY = 20;
+        if (newY > window.innerHeight - fab.offsetHeight - 20) {
+          newY = window.innerHeight - fab.offsetHeight - 20;
+        }
+        
+        fab.style.left = newX + 'px';
+        fab.style.top = newY + 'px';
+        fab.style.right = 'auto';
+      }
+    }, { passive: false });
+
+    // Touch end
+    document.addEventListener('touchend', (e) => {
+      if (!fabDragging) return;
+      fabDragging = false;
+      
+      fab.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
+      if (fabMoved) {
+        const halfScreen = window.innerWidth / 2;
+        const rect = fab.getBoundingClientRect();
+        const currentCenterX = rect.left + rect.width / 2;
+        
+        if (currentCenterX > halfScreen) {
+          // Snap right
+          fab.style.left = (window.innerWidth - fab.offsetWidth) + 'px';
+          fab.classList.add('snapped-right');
+          setTimeout(() => {
+            if (!fabDragging) {
+              fab.style.transition = 'none';
+              fab.style.left = 'auto';
+              fab.style.right = '0px';
+            }
+          }, 300);
+        } else {
+          // Snap left
+          fab.style.left = '0px';
+          fab.classList.remove('snapped-right');
+          setTimeout(() => {
+            if (!fabDragging) {
+              fab.style.transition = 'none';
+              fab.style.left = '0px';
+              fab.style.right = 'auto';
+            }
+          }, 300);
+        }
+      }
+    });
+
+    // Handle Click
+    fab.addEventListener('click', (e) => {
+      if (fabMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      toggleExamPanel();
+    });
+  }
+})();
 
 /* ═══ KEYBOARD SHORTCUTS (chỉ áp dụng trong màn hình ÔN LUYỆN) ═══ */
 (function initKeyboard() {
