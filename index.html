@@ -963,7 +963,6 @@ body {
 
 <!-- HEADER -->
 <div class="header">
-  <span class="header-star">★</span>
   <h1>ÔN TẬP TIN HỌC CƠ BẢN</h1>
   <p>Bộ câu hỏi trắc nghiệm · Ôn luyện kiến thức cơ bản</p>
   <div class="header-divider"></div>
@@ -10639,10 +10638,13 @@ function startQuiz(mode) {
   let pool;
   if (mode === 'all') {
     const p_intro = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'intro')).slice(0,2);
-    const p_ch1   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch1')).slice(0,12);
-    const p_ch2   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch2')).slice(0,17);
-    const p_ch3   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch3')).slice(0,19);
-    pool = shuffle([...p_intro, ...p_ch1, ...p_ch2, ...p_ch3]);
+    const p_ch1   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch1')).slice(0,8);
+    const p_ch2   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch2')).slice(0,8);
+    const p_ch3   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch3')).slice(0,8);
+    const p_ch4   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch4')).slice(0,8);
+    const p_ch5   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch5')).slice(0,8);
+    const p_ch6   = shuffle(ALL_QUESTIONS.filter(q => q.ch === 'ch6')).slice(0,8);
+    pool = shuffle([...p_intro, ...p_ch1, ...p_ch2, ...p_ch3, ...p_ch4, ...p_ch5, ...p_ch6]);
 } else if (mode === 'weak' || mode === 'weak_all') {
     const weakQs = ALL_QUESTIONS.filter(q => state.weakIds.includes(q.id));
     pool = shuffle(weakQs);
