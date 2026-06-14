@@ -10343,7 +10343,17 @@ function shouldKeepOptionOrder(q) {
       .replace(/<[^>]*>/g, ' ')
       .normalize('NFC');
   }).join(' | ');
-  return /(?:Cả\s+(?:A|B|C|D|3)|Câu\s+(?:A|B|C|D)|(?:^|[^A-Z])A\s*,\s*B|(?:^|[^A-Z])A\s+và\s+B|(?:^|[^A-Z])A\s*,\s*B\s+và\s+C|Tất cả đều)/i.test(combinedOptions);
+
+  const patterns = [
+    /(?:^|[^A-Z])(?:A\s*,\s*B\s*,\s*C|A\s*,\s*B|A\s*,\s*C|A\s*và\s*B|A\s*và\s*C)/i,
+    /Cả\s+(?:A|B|C|D|2|3)|Cả\s+hai\s+đều|Cả\s+ba/i,
+    /Cả\s+A\s+và\s+B|Cả\s+A\s+và\s+C|Cả\s+B\s+và\s+C|Cả\s+A\s*,\s*B\s*,\s*C|Cả\s+A\s*,\s*B\s+và\s+C/i,
+    /Tất\s+cả\s+(?:đúng|sai|đều)/i,
+    /Các\s+(?:ý|câu)\s+trên|Các\s+ý\s+trên\s+(?:đều|đúng|sai)|Các\s+câu\s+A\s*,\s*B\s*,\s*C/i,
+    /Câu\s+(?:A|B|C|D)|Câu\s+A\s*,\s*B|Câu\s+A\s*,\s*C|Câu\s+A\s+và\s+B|Câu\s+A\s+và\s+C/i
+  ];
+  
+  return patterns.some(p => p.test(combinedOptions));
 }
 
 function appendQuestionExtras(container, q) {
